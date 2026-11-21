@@ -14,6 +14,6 @@ WORKDIR /app
 
 COPY --from=build /app/target/gestcom-backend-*.jar app.jar
 
-EXPOSE 3255
+EXPOSE 6225
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

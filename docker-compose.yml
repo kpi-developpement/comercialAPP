@@ -1,41 +1,23 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: gestcom-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: ${DB_NAME:-gestcom}
-      POSTGRES_USER: ${DB_USER:-gestcom}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-gestcom}
-    ports:
-      - "${DB_PORT:-5432}:5432"
-    volumes:
-      - gestcom-pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-gestcom} -d ${DB_NAME:-gestcom}"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: gestcom-backend
     restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
     ports:
-      - "3255:3255"
+      - "6225:6225"
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
-      SERVER_PORT: 3255
-      DB_HOST: postgres
+      SERVER_PORT: 6225
+      DB_HOST: 10.10.10.50
       DB_PORT: 5432
       DB_NAME: ${DB_NAME:-gestcom}
-      DB_USER: ${DB_USER:-gestcom}
-      DB_PASSWORD: ${DB_PASSWORD:-gestcom}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-password}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://10.10.10.50:5432/${DB_NAME:-gestcom}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-password}
       JWT_SECRET: ${JWT_SECRET:-gestcom-super-secret-jwt-key-change-me-2026-min-32-chars}
       JWT_EXPIRATION_MINUTES: ${JWT_EXPIRATION_MINUTES:-720}
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://10.10.10.25:2534,http://localhost:2534}
@@ -48,7 +30,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:3255}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:6225}
     container_name: gestcom-frontend
     restart: unless-stopped
     depends_on:
@@ -57,7 +39,4 @@ services:
       - "2534:2534"
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:3255}
-
-volumes:
-  gestcom-pgdata:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:6225}
