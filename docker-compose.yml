@@ -6,10 +6,10 @@ services:
     container_name: gestcom-backend
     restart: unless-stopped
     ports:
-      - "6225:6225"
+      - "6228:6228"
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
-      SERVER_PORT: 6225
+      SERVER_PORT: 6228
       DB_HOST: 10.10.10.50
       DB_PORT: 5432
       DB_NAME: ${DB_NAME:-gestcom}
@@ -30,7 +30,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:6225}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:6228}
     container_name: gestcom-frontend
     restart: unless-stopped
     depends_on:
@@ -39,4 +39,4 @@ services:
       - "2534:2534"
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:6225}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://10.10.10.25:6228}
