@@ -1,0 +1,121 @@
+.form {
+  --tilt: none;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 420px;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  background: var(--color-panel);
+  backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-lg);
+  transform: var(--tilt);
+  transform-style: preserve-3d;
+  animation: formIn 900ms var(--ease-spring) 200ms both;
+}
+
+/* Animated gradient frame */
+.form::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle, 0deg), transparent 0 70%, var(--cyan-400), var(--violet-500), transparent);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: rotate 5s linear infinite;
+  pointer-events: none;
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(400px circle at var(--mx) var(--my), rgba(106, 76, 240, 0.07), transparent 45%);
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  background: var(--grad-primary);
+  box-shadow: 0 0 26px -4px rgba(139, 108, 255, 0.9);
+  border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+  animation: morph 4s var(--ease-in-out) infinite alternate;
+}
+
+.title {
+  font-size: var(--text-xl);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.serverError {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+  animation: shake 420ms var(--ease-out);
+}
+
+.submit {
+  width: 100%;
+  height: 44px;
+  margin-top: var(--space-2);
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes morph {
+  to {
+    border-radius: 62% 38% 40% 60% / 38% 62% 38% 62%;
+    rotate: 90deg;
+  }
+}
+
+@keyframes formIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94);
+    filter: blur(10px);
+  }
+}
+
+@keyframes shake {
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}

@@ -1,0 +1,31 @@
+.reveal {
+  opacity: 0;
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform 700ms var(--ease-spring),
+    filter var(--duration-slow) var(--ease-out);
+  transition-delay: calc(min(var(--i, 0), 12) * 70ms);
+}
+
+.rise {
+  transform: translateY(28px);
+}
+
+.zoom {
+  transform: scale(0.94);
+}
+
+.blur {
+  filter: blur(10px);
+  transform: translateY(12px);
+}
+
+.slide {
+  transform: translateX(-24px);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}

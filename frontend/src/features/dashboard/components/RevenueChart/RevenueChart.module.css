@@ -1,0 +1,70 @@
+.wrap {
+  width: 100%;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.grid {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.axis {
+  fill: var(--color-text-subtle);
+  font-size: 11px;
+}
+
+/* Bars grow from the baseline with a spring, one after the other */
+.bar {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(0);
+  transition: transform 900ms var(--ease-spring), filter var(--duration-fast);
+  transition-delay: calc(var(--i) * 55ms);
+}
+
+.visible .bar {
+  transform: scaleY(1);
+}
+
+.group:hover .bar {
+  filter: brightness(1.35) drop-shadow(0 0 10px rgba(34, 211, 238, 0.7));
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.7));
+  transition: stroke-dashoffset 1600ms var(--ease-in-out) 500ms;
+}
+
+.visible .line {
+  stroke-dashoffset: 0;
+}
+
+.point {
+  fill: var(--color-surface);
+  stroke: var(--pink-400);
+  stroke-width: 2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  transition: opacity 300ms, transform 500ms var(--ease-spring);
+  transition-delay: calc(600ms + var(--i) * 90ms);
+}
+
+.visible .point {
+  opacity: 1;
+  transform: scale(1);
+}

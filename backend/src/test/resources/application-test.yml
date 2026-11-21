@@ -1,0 +1,5 @@
+gestcom:
+  jwt:
+    secret: test-secret-0123456789-abcdefghijklmnopqrstuvwxyz
+  admin:
+    password: admin123

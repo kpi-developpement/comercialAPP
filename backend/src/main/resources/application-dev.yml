@@ -1,0 +1,22 @@
+# Local development profile: seed data + permissive defaults. Never use in production.
+# Local PostgreSQL account (override with DB_USER / DB_PASSWORD if needed).
+# The "gestcom" database is created automatically at startup (DevDatabaseCreator).
+spring:
+  datasource:
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:waeloujdiastral481123456}
+  flyway:
+    locations: classpath:db/migration,classpath:db/seed
+
+gestcom:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-change-me-0123456789-abcdefghijklmnop}
+  admin:
+    password: ${GESTCOM_ADMIN_PASSWORD:admin123}
+  dev:
+    create-database: true
+
+logging:
+  level:
+    ma.gestcom: DEBUG
+    org.hibernate.SQL: WARN

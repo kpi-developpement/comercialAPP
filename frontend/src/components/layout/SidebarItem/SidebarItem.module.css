@@ -1,0 +1,54 @@
+.li {
+  animation: linkIn 560ms var(--ease-spring) both;
+  animation-delay: calc(min(var(--i), 30) * 22ms + 120ms);
+}
+
+.item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 7px var(--space-3) 7px var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-sidebar-text);
+  font-size: var(--text-sm);
+  transition: color var(--duration-fast), transform 320ms var(--ease-spring);
+}
+
+.item:hover {
+  color: var(--color-sidebar-text-active);
+  text-decoration: none;
+  transform: translateX(4px);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text-subtle);
+  transition: background var(--duration-fast), box-shadow var(--duration-fast), transform 380ms var(--ease-spring);
+}
+
+.item:hover .dot {
+  background: var(--violet-400);
+  transform: scale(1.4);
+}
+
+.active {
+  color: var(--color-sidebar-text-active);
+  font-weight: var(--weight-medium);
+}
+
+.active .dot {
+  background: var(--color-accent-text);
+  box-shadow: 0 0 10px 1px var(--cyan-400);
+  transform: scale(1.3);
+}
+
+@keyframes linkIn {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}

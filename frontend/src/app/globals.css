@@ -1,0 +1,284 @@
+/*
+ * GestCom design system — light theme.
+ * Every color / spacing / radius / font size / motion curve used by CSS modules comes from these variables.
+ * A dark theme can be added under [data-theme="dark"] by overriding the semantic tokens only.
+ */
+:root {
+  color-scheme: light;
+
+  /* Raw palette */
+  --violet-400: #8a72f5;
+  --violet-500: #6a4cf0;
+  --violet-600: #5638d8;
+  --cyan-400: #06b6d4;
+  --cyan-600: #0891b2;
+  --pink-400: #ec4899;
+  --mint-400: #10b981;
+  --amber-400: #f59e0b;
+  --rose-400: #f43f5e;
+
+  /* Semantic colors */
+  --color-bg: #f4f5fa;
+  --color-surface: #ffffff;
+  --color-surface-solid: #ffffff;
+  --color-surface-muted: #f8f9fc;
+  --color-surface-hover: rgba(106, 76, 240, 0.06);
+  --color-surface-raised: #ffffff;
+  --color-panel: #ffffff;
+  --color-th-bg: rgba(248, 249, 252, 0.94);
+  --color-topbar-bg: rgba(255, 255, 255, 0.82);
+  --color-input-bg: #ffffff;
+  --color-input-bg-focus: #ffffff;
+  --color-border: #e5e7f0;
+  --color-border-strong: #d4d8e6;
+  --color-text: #161a33;
+  --color-text-secondary: #3b4160;
+  --color-text-muted: #5e6582;
+  --color-text-subtle: #8a90a8;
+  --color-text-inverse: #ffffff;
+  --color-primary: var(--violet-500);
+  --color-primary-hover: var(--violet-600);
+  --color-primary-soft: rgba(106, 76, 240, 0.09);
+  --color-primary-border: rgba(106, 76, 240, 0.45);
+  --color-primary-text: #5133d6;
+  --color-accent: var(--cyan-600);
+  --color-accent-soft: rgba(8, 145, 178, 0.09);
+  --color-accent-text: #0b7895;
+  --color-focus: var(--violet-500);
+  --color-success: #059669;
+  --color-success-soft: rgba(16, 185, 129, 0.11);
+  --color-warning: #b45309;
+  --color-warning-soft: rgba(245, 158, 11, 0.13);
+  --color-danger: #e11d48;
+  --color-danger-soft: rgba(244, 63, 94, 0.1);
+  --color-info: #6d28d9;
+  --color-info-soft: rgba(109, 40, 217, 0.09);
+  --color-sidebar-bg: rgba(255, 255, 255, 0.92);
+  --color-sidebar-text: #4a5070;
+  --color-sidebar-text-active: #161a33;
+  --color-sidebar-hover: rgba(106, 76, 240, 0.06);
+  --color-sidebar-active: rgba(106, 76, 240, 0.1);
+  --color-overlay: rgba(22, 26, 51, 0.32);
+  --color-link: var(--color-primary-text);
+
+  /* Gradients & glows */
+  --grad-primary: linear-gradient(135deg, var(--violet-500) 0%, #4f6ff5 55%, var(--cyan-600) 100%);
+  --grad-text: linear-gradient(90deg, #161a33 0%, #4a2fd0 60%, #0b7895 100%);
+  --glow-primary: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 18px -6px rgba(86, 56, 216, 0.55);
+  --glow-accent: 0 0 14px -4px rgba(8, 145, 178, 0.6);
+  --ring-focus: 0 0 0 3px rgba(106, 76, 240, 0.16);
+
+  /* Chart series */
+  --chart-1: var(--violet-500);
+  --chart-2: var(--cyan-600);
+  --chart-3: var(--amber-400);
+  --chart-4: var(--pink-400);
+  --chart-grid: #eceef5;
+
+  /* Spacing (4pt scale) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Typography */
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  --font-mono: "Cascadia Code", ui-monospace, Consolas, monospace;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+
+  /* Shape & depth */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 999px;
+  --shadow-sm: 0 1px 2px rgba(22, 26, 51, 0.05), 0 4px 14px -8px rgba(22, 26, 51, 0.12);
+  --shadow-md: 0 10px 30px -14px rgba(22, 26, 51, 0.22);
+  --shadow-lg: 0 24px 60px -20px rgba(22, 26, 51, 0.3), 0 0 0 1px rgba(22, 26, 51, 0.04);
+  --blur-glass: blur(14px) saturate(160%);
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --topbar-height: 60px;
+  --content-max: 1480px;
+  --control-height: 38px;
+  --control-height-sm: 30px;
+
+  /* Motion */
+  --duration-fast: 140ms;
+  --duration-normal: 260ms;
+  --duration-slow: 520ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Damped spring (overshoots then settles) */
+  --ease-spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121,
+    1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%,
+    0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1);
+
+  --z-sidebar: 20;
+  --z-dropdown: 70;
+  --z-modal: 60;
+  --z-toast: 80;
+  --z-progress: 90;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scrollbar-color: #c9cddc transparent;
+  scrollbar-width: thin;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background:
+    radial-gradient(1100px 520px at 100% -10%, rgba(106, 76, 240, 0.07), transparent 60%),
+    radial-gradient(900px 480px at -10% 110%, rgba(8, 145, 178, 0.05), transparent 60%),
+    var(--color-bg);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(106, 76, 240, 0.2);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+h3 {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+code {
+  font-family: var(--font-mono);
+  color: var(--color-accent-text);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cdd1e0;
+  border: 3px solid transparent;
+  border-radius: var(--radius-full);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a9afc6;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+  }
+}

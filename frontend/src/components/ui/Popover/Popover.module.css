@@ -1,0 +1,69 @@
+.panel {
+  position: fixed;
+  z-index: var(--z-dropdown);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--space-1);
+  background: var(--color-surface-raised);
+  backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg), 0 0 40px -12px rgba(115, 80, 245, 0.55);
+  animation: open 360ms var(--ease-spring) both;
+}
+
+/* Neon edge on the side attached to the anchor */
+.panel::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: var(--grad-primary);
+  opacity: 0.9;
+  box-shadow: var(--glow-accent);
+}
+
+.bottom {
+  transform-origin: 50% 0;
+}
+
+.bottom::before {
+  top: 0;
+}
+
+.top {
+  transform-origin: 50% 100%;
+}
+
+.top::before {
+  bottom: 0;
+}
+
+.closing {
+  animation: close 140ms var(--ease-in-out) both;
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    transform: scale(0.96, 0.7);
+    clip-path: inset(0 0 100% 0 round var(--radius-md));
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0 round var(--radius-md));
+    filter: none;
+  }
+}
+
+@keyframes close {
+  to {
+    opacity: 0;
+    transform: scale(0.98, 0.9);
+    filter: blur(2px);
+  }
+}

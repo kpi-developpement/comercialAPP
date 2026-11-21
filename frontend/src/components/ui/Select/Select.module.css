@@ -1,0 +1,221 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.native {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  height: var(--control-height);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-input-bg);
+  font-size: var(--text-md);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    transform 300ms var(--ease-spring);
+}
+
+/* Energy sweep on hover */
+.trigger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(139, 108, 255, 0.16) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 700ms var(--ease-out);
+  pointer-events: none;
+}
+
+.trigger:hover:not(:disabled)::after {
+  transform: translateX(100%);
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: var(--color-primary-border);
+  background: rgba(139, 108, 255, 0.06);
+}
+
+.trigger:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.trigger:focus-visible,
+.open {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: var(--ring-focus);
+}
+
+.trigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.invalid {
+  border-color: var(--color-danger);
+}
+
+.value,
+.placeholder {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--color-text-subtle);
+}
+
+/* Chevron that morphs into a rotated arrow when open */
+.chevron {
+  position: relative;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  transition: transform 420ms var(--ease-spring);
+}
+
+.chevron::before,
+.chevron::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 7px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: var(--color-text-muted);
+  transition: transform 420ms var(--ease-spring), background var(--duration-fast);
+}
+
+.chevron::before {
+  left: -1px;
+  transform: rotate(40deg);
+}
+
+.chevron::after {
+  right: -1px;
+  transform: rotate(-40deg);
+}
+
+.open .chevron {
+  transform: translateY(-1px);
+}
+
+.open .chevron::before {
+  transform: rotate(-40deg);
+  background: var(--color-accent);
+}
+
+.open .chevron::after {
+  transform: rotate(40deg);
+  background: var(--color-accent);
+}
+
+.search {
+  flex-shrink: 0;
+  height: 32px;
+  margin: var(--space-1) var(--space-1) var(--space-2);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  font-size: var(--text-sm);
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--color-focus);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 7px var(--space-3) 7px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  animation: optionIn 420ms var(--ease-spring) both;
+  animation-delay: calc(min(var(--i), 10) * 22ms);
+  transition: background var(--duration-fast), color var(--duration-fast), padding-left 240ms var(--ease-spring);
+}
+
+.active {
+  background: linear-gradient(90deg, rgba(139, 108, 255, 0.22), rgba(34, 211, 238, 0.06));
+  padding-left: var(--space-3);
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22%;
+  bottom: 22%;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--grad-primary);
+  box-shadow: var(--glow-accent);
+}
+
+.selected {
+  color: var(--color-primary-text);
+  font-weight: var(--weight-medium);
+}
+
+/* Check mark drawn when selected */
+.check {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  transition: background 300ms var(--ease-spring), border-color 200ms, transform 400ms var(--ease-spring);
+}
+
+.selected .check {
+  border-color: transparent;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7.2l2.3 2.3 4.7-5' fill='none' stroke='%2305060f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat,
+    var(--grad-primary);
+  transform: scale(1.08);
+}
+
+.empty {
+  padding: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+@keyframes optionIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}

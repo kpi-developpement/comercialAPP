@@ -1,0 +1,106 @@
+.region {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: min(420px, calc(100vw - 32px));
+}
+
+.toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-raised);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+  animation: toastIn 640ms var(--ease-spring) both;
+}
+
+/* Status orb */
+.toast::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px 2px currentColor;
+  animation: pulse 1.6s var(--ease-in-out) infinite;
+}
+
+/* Remaining-time bar */
+.toast::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  opacity: 0.8;
+  transform-origin: 0 50%;
+  animation: timer var(--toast-ms, 4000ms) linear forwards;
+}
+
+.success {
+  color: var(--color-success);
+}
+
+.error {
+  color: var(--color-danger);
+}
+
+.info {
+  color: var(--color-accent);
+}
+
+.message {
+  color: var(--color-text);
+}
+
+.close {
+  margin-left: auto;
+  border: none;
+  background: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 420ms var(--ease-spring), color var(--duration-fast);
+}
+
+.close:hover {
+  color: var(--color-text);
+  transform: rotate(90deg);
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px) scale(0.92);
+    filter: blur(6px);
+  }
+}
+
+@keyframes timer {
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(0.7);
+    opacity: 0.6;
+  }
+}

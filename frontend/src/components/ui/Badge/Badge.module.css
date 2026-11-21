@@ -1,0 +1,72 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 var(--space-2) 0 7px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid currentColor;
+  border-color: color-mix(in srgb, currentColor 30%, transparent);
+  animation: badgeIn 420ms var(--ease-spring) both;
+}
+
+/* Status light */
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.neutral {
+  color: var(--color-text-muted);
+  background: var(--color-surface-muted);
+}
+
+.primary {
+  color: var(--color-primary-text);
+  background: var(--color-primary-soft);
+}
+
+.success {
+  color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.warning {
+  color: var(--color-warning);
+  background: var(--color-warning-soft);
+}
+
+.danger {
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.danger::before {
+  animation: blink 1.4s var(--ease-in-out) infinite;
+}
+
+.info {
+  color: var(--color-accent-text);
+  background: var(--color-accent-soft);
+}
+
+@keyframes badgeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}

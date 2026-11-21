@@ -1,0 +1,43 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.info {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.error {
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+}
+
+.table {
+  width: 100%;
+  font-size: var(--text-sm);
+}
+
+.table th {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  text-align: left;
+}
+
+.table td {
+  padding: var(--space-1) var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.amount {
+  width: 150px;
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

@@ -1,0 +1,42 @@
+.shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  margin-left: var(--sidebar-width);
+  min-width: 0;
+}
+
+.content {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-12);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-sidebar) - 1);
+  background: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  animation: fade 240ms var(--ease-out);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .main {
+    margin-left: 0;
+  }
+
+  .content {
+    padding: var(--space-4);
+  }
+}

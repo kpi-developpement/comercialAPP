@@ -1,0 +1,174 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-12) var(--space-4);
+  background: var(--color-overlay);
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+  animation: fade 260ms var(--ease-out) both;
+}
+
+.overlayOut {
+  animation: fadeOut 220ms var(--ease-in-out) both;
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: var(--color-panel);
+  border: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-lg);
+  animation: morphIn 620ms var(--ease-spring) both;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+.panelOut {
+  animation: morphOut 220ms var(--ease-in-out) both;
+}
+
+/* Aurora rim on top of the dialog */
+.glow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: -1px;
+  height: 1px;
+  background: var(--grad-primary);
+  box-shadow: 0 0 18px 2px rgba(34, 211, 238, 0.55);
+  pointer-events: none;
+}
+
+.sm {
+  max-width: 440px;
+}
+
+.md {
+  max-width: 660px;
+}
+
+.lg {
+  max-width: 980px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header h2 {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Close button: the cross morphs into a rotated cross on hover */
+.close {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--duration-fast), border-color var(--duration-fast), transform 420ms var(--ease-spring);
+}
+
+.close span,
+.close::before,
+.close::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.close::before,
+.close::after {
+  content: "";
+  width: 14px;
+  height: 1.6px;
+  margin: -0.8px 0 0 -7px;
+  border-radius: 2px;
+  background: var(--color-text-muted);
+  transition: background var(--duration-fast);
+}
+
+.close::before {
+  transform: rotate(45deg);
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}
+
+.close:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-hover);
+  transform: rotate(90deg);
+}
+
+.close:hover::before,
+.close:hover::after {
+  background: var(--color-text);
+}
+
+.body {
+  padding: var(--space-6);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes morphIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    clip-path: circle(6% at 50% 40%);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    clip-path: circle(150% at 50% 40%);
+  }
+}
+
+@keyframes morphOut {
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.94);
+    filter: blur(6px);
+  }
+}

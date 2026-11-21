@@ -1,0 +1,19 @@
+.page {
+  animation: enter 620ms var(--ease-out) both;
+}
+
+@keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    filter: blur(8px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

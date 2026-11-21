@@ -1,0 +1,118 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  font-size: var(--text-sm);
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  padding: var(--space-3);
+  background: var(--color-th-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 10px var(--space-3);
+  border-bottom: 1px solid rgba(150, 165, 255, 0.07);
+  vertical-align: middle;
+}
+
+/* Staggered row entrance */
+.row {
+  animation: rowIn 520ms var(--ease-spring) both;
+  animation-delay: calc(min(var(--i), 16) * 28ms);
+  transition: background var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable td:first-child {
+  position: relative;
+}
+
+/* Hover: lit row + neon marker that grows from the center */
+.clickable td:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  border-radius: 2px;
+  background: var(--grad-primary);
+  box-shadow: var(--glow-accent);
+  transition: height 300ms var(--ease-spring), top 300ms var(--ease-spring);
+}
+
+.clickable:hover,
+.clickable:focus-visible {
+  background: linear-gradient(90deg, rgba(139, 108, 255, 0.12), rgba(34, 211, 238, 0.03) 60%, transparent);
+  outline: none;
+}
+
+.clickable:hover td:first-child::before,
+.clickable:focus-visible td:first-child::before {
+  top: 20%;
+  height: 60%;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  transition: color var(--duration-fast);
+}
+
+.sortButton:hover {
+  color: var(--color-text);
+}
+
+.sortIcon {
+  display: inline-block;
+  font-size: 9px;
+  opacity: 0.5;
+  transition: transform 420ms var(--ease-spring), opacity var(--duration-fast), color var(--duration-fast);
+}
+
+.sortActive {
+  opacity: 1;
+  color: var(--color-accent-text);
+}
+
+.sortDesc {
+  transform: rotate(180deg);
+}
+
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}

@@ -1,0 +1,55 @@
+.wrap {
+  width: 100%;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.track {
+  fill: var(--color-input-bg);
+}
+
+.label {
+  fill: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.bar {
+  transform-box: fill-box;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 1000ms var(--ease-spring), filter var(--duration-fast);
+  transition-delay: calc(var(--i) * 70ms);
+  filter: drop-shadow(0 0 6px rgba(139, 108, 255, 0.35));
+}
+
+.visible .bar {
+  transform: scaleX(1);
+}
+
+.row:hover .bar {
+  filter: brightness(1.3) drop-shadow(0 0 10px rgba(34, 211, 238, 0.8));
+}
+
+.value {
+  fill: var(--color-text-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out);
+  transition-delay: calc(400ms + var(--i) * 70ms);
+}
+
+.visible .value {
+  opacity: 1;
+}
+
+.empty {
+  padding: var(--space-6) 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

@@ -1,0 +1,11 @@
+# Production profile: every secret must come from environment variables.
+springdoc:
+  api-docs:
+    enabled: ${SWAGGER_ENABLED:false}
+  swagger-ui:
+    enabled: ${SWAGGER_ENABLED:false}
+
+logging:
+  level:
+    root: INFO
+    ma.gestcom: INFO

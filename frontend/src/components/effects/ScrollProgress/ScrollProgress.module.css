@@ -1,0 +1,14 @@
+.bar {
+  --progress: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-progress);
+  height: 2px;
+  background: var(--grad-primary);
+  box-shadow: var(--glow-accent);
+  transform: scaleX(var(--progress));
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
