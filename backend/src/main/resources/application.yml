@@ -41,4 +41,10 @@ gestcom:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:2534}
   admin:
     username: ${GESTCOM_ADMIN_USERNAME:admin}
-    password: ${GESTCOM_ADMIN_PASSWORD:}
+    password: ${GESTCOM_ADMIN_PASSWORD:admin123}
+  # One account per role is guaranteed at every startup (created only if the role has no active user).
+  accounts:
+    password: ${GESTCOM_DEFAULT_PASSWORD:demo1234}
+    commercial: ${GESTCOM_COMMERCIAL_USERNAME:commercial}
+    magasinier: ${GESTCOM_MAGASINIER_USERNAME:magasinier}
+    comptable: ${GESTCOM_COMPTABLE_USERNAME:comptable}
