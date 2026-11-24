@@ -3,8 +3,8 @@
 # The "gestcom" database is created automatically at startup (DevDatabaseCreator).
 spring:
   datasource:
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:waeloujdiastral481123456}
+    username: ${DB_USER:kyntus_user}
+    password: ${DB_PASSWORD:kyntus_password}
   flyway:
     locations: classpath:db/migration,classpath:db/seed
 
